@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ns-prueba-tecnica
+  name: sr-api-prueba-tecnica
+  labels:
+    app: prueba_tecnica
+spec:
+  type: LoadBalancer
+  selector:
+    app: prueba_tecnica
+    uso: contenedor-prueba-tecnica
+  ports:
+  - port: 8080
+    targetPort: 8080

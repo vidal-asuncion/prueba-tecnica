@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ns-prueba-tecnica
+  labels:
+    name: ns-prueba-tecnica

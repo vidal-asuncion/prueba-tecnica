@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ns-prueba-tecnica
+  name: api-prueba-tecnica
+  labels:
+    app: prueba_tecnica
+    ambiente: development
+spec:
+  selector:
+    matchLabels:
+      app: prueba_tecnica
+      uso: contenedor-prueba-tecnica
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: prueba_tecnica
+        uso: contenedor-prueba-tecnica
+    spec:
+      imagePullSecrets:
+        - name: local-secret
+      containers:
+      - name: netbanking-api-container
+        image: 859423464199.dkr.ecr.us-east-2.amazonaws.com/prueba_tecnica_repo:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+            ephemeral-storage: "10M"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+            ephemeral-storage: "15M"
+        ports:
+        - containerPort: 8080

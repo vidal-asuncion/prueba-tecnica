@@ -1,0 +1,5 @@
+Para establecer credenciales:
+
+export TF_VAR_access_key="llave de acceso"
+export TF_VAR_secret_key="llave secreta"
+export TF_VAR_region="us-east-2"

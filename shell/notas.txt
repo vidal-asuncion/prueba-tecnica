@@ -1,0 +1,14 @@
+Habiendo instalado kubectl, aws CLI...
+
+Hago login en docker para conectarme al ECR que hice por aparte y por eso lo ejecuté por separado en terraform.
+sudo aws ecr get-login-password --region us-east-2 | sudo docker login --username AWS --password-stdin 859423464199.dkr.ecr.us-east-2.amazonaws.com
+
+Se hace login con Docker usando el comando anterior, para poder hacer push a las imágenes de forma manual y poder probar el ECR
+
+Agregamos los cluster al kubeconfig local para poder manejarlos con kubectl
+
+aws eks update-kubeconfig --name eks-despliegue
+aws eks update-kubeconfig --name eks-desarrollo
+
+confirmamos con kubectl config get-contexts
+deben aparecer los dos 
